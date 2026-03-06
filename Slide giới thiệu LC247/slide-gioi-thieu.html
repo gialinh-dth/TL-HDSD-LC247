@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bác sĩ Long Châu 247 — Giới thiệu dịch vụ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563EB;
+            --primary-light: #3B82F6;
+            --primary-dark: #1D4ED8;
+            --accent: #F59E0B;
+            --accent-light: #FCD34D;
+            --green: #10B981;
+            --green-light: #D1FAE5;
+            --red: #EF4444;
+            --purple: #8B5CF6;
+            --purple-light: #EDE9FE;
+            --text: #1E293B;
+            --text-secondary: #64748B;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --bg-start: #EFF6FF;
+            --bg-end: #F8FAFC;
+            --card-bg: rgba(255,255,255,0.92);
+            --card-shadow: 0 8px 32px rgba(37,99,235,0.10);
+            --card-shadow-hover: 0 12px 40px rgba(37,99,235,0.18);
+            --total-slides: 6;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            color: var(--text);
+        }
+
+        /* === SLIDE FRAMEWORK === */
+        .slides-wrapper {
+            display: flex;
+            height: 100vh;
+            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* === PROGRESS BAR === */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(0,0,0,0.06);
+            z-index: 1000;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            transition: width 0.5s ease;
+            border-radius: 0 2px 2px 0;
+        }
+
+        /* === BOTTOM NAV === */
+        .slide-nav {
+            position: fixed;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 6px;
+            z-index: 999;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(12px);
+            padding: 8px 16px;
+            border-radius: 50px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+        }
+        .nav-dot {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            height: 32px;
+            padding: 0 14px;
+            border-radius: 50px;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1.5px solid transparent;
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-light);
+            white-space: nowrap;
+        }
+        .nav-dot::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--text-light);
+            flex-shrink: 0;
+            transition: background 0.3s ease;
+        }
+        .nav-dot:hover {
+            background: #F1F5F9;
+            color: var(--text-secondary);
+        }
+        .nav-dot.active {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+        .nav-dot.active::before {
+            background: var(--white);
+        }
+
+        /* === ARROW BUTTONS === */
+        .nav-arrow {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 999;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            color: var(--text);
+        }
+        .nav-arrow:hover {
+            background: var(--primary);
+            color: var(--white);
+            box-shadow: 0 6px 28px rgba(37,99,235,0.3);
+            transform: translateY(-50%) scale(1.08);
+        }
+        .nav-arrow:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+        .nav-arrow.prev { left: 24px; }
+        .nav-arrow.next { right: 24px; }
+        .nav-arrow.hidden { opacity: 0; pointer-events: none; }
+        .nav-arrow svg {
+            width: 22px;
+            height: 22px;
+            stroke: currentColor;
+            stroke-width: 2.5;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* === SLIDE NUMBER === */
+        .slide-number {
+            position: absolute;
+            top: 28px;
+            right: 40px;
+            font-size: 13px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.4);
+        }
+        .slide-light .slide-number { color: var(--text-light); }
+
+        /* ============================================
+           SLIDE 1 — HERO
+           ============================================ */
+        .slide-hero {
+            background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 40%, #3B82F6 70%, #60A5FA 100%);
+            color: var(--white);
+            padding: 0;
+        }
+        .slide-hero .hero-content {
+            display: flex;
+            height: 100%;
+            width: 100%;
+        }
+        .hero-left {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 70px 80px;
+            position: relative;
+            z-index: 2;
+        }
+        .hero-logo {
+            width: 180px;
+            height: auto;
+            margin-bottom: 28px;
+            filter: brightness(0) invert(1);
+            opacity: 0.95;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 500;
+            width: fit-content;
+            margin-bottom: 28px;
+            letter-spacing: 0.5px;
+        }
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #34D399;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+        .hero-title {
+            font-size: 54px;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 24px;
+            letter-spacing: -0.5px;
+        }
+        .hero-title .highlight {
+            background: linear-gradient(90deg, #FCD34D, #F59E0B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-subtitle {
+            font-size: 20px;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.85);
+            max-width: 520px;
+            font-weight: 400;
+        }
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 44px;
+        }
+        .hero-stat {
+            display: flex;
+            flex-direction: column;
+        }
+        .hero-stat-number {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--accent-light);
+        }
+        .hero-stat-label {
+            font-size: 14px;
+            color: rgba(255,255,255,0.7);
+            margin-top: 4px;
+        }
+        .hero-right {
+            flex: 0 0 46%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .hero-phones {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        .phone-frame {
+            background: var(--white);
+            border-radius: 28px;
+            padding: 6px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.1);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        .phone-frame:hover { transform: translateY(-8px) !important; }
+        .phone-frame img {
+            border-radius: 22px;
+            display: block;
+        }
+        .phone-frame.center img { width: 230px; height: auto; }
+        .phone-frame.center { z-index: 3; }
+        .phone-frame.side-left {
+            z-index: 2;
+            transform: scale(0.82) translateX(30px) translateY(20px) rotate(-4deg);
+            opacity: 0.9;
+        }
+        .phone-frame.side-left:hover { transform: scale(0.82) translateX(30px) translateY(12px) rotate(-4deg) !important; }
+        .phone-frame.side-right {
+            z-index: 2;
+            transform: scale(0.82) translateX(-30px) translateY(20px) rotate(4deg);
+            opacity: 0.9;
+        }
+        .phone-frame.side-right:hover { transform: scale(0.82) translateX(-30px) translateY(12px) rotate(4deg) !important; }
+        .phone-frame.side-left img,
+        .phone-frame.side-right img { width: 200px; height: auto; }
+        .hero-right::before {
+            content: '';
+            position: absolute;
+            width: 300px; height: 300px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            top: 10%; right: -50px;
+        }
+        .hero-right::after {
+            content: '';
+            position: absolute;
+            width: 200px; height: 200px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.04);
+            bottom: 15%; left: 0;
+        }
+
+        /* ============================================
+           SLIDE 2 — CORE VALUE
+           ============================================ */
+        .slide-core {
+            background: linear-gradient(180deg, var(--bg-start) 0%, var(--white) 100%);
+            padding: 50px 70px;
+        }
+        .section-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        .section-title {
+            font-size: 40px;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+        .section-subtitle {
+            font-size: 17px;
+            color: var(--text-secondary);
+            margin-bottom: 36px;
+        }
+        .core-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+            flex: 1;
+        }
+        .core-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(37,99,235,0.08);
+            border-radius: 20px;
+            padding: 0;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .core-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            border-radius: 20px 20px 0 0;
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .core-card:nth-child(1)::before { background: var(--primary); }
+        .core-card:nth-child(2)::before { background: var(--green); }
+        .core-card:nth-child(3)::before { background: var(--accent); }
+        .core-card:nth-child(4)::before { background: var(--red); }
+        .core-card:hover {
+            box-shadow: var(--card-shadow-hover);
+            transform: translateY(-4px);
+        }
+        .core-card:hover::before { opacity: 1; }
+
+        .core-card-img {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            padding: 24px 24px 0 24px;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+            min-height: 200px;
+        }
+        .core-card:nth-child(1) .core-card-img { background: linear-gradient(180deg, #EFF6FF 0%, rgba(239,246,255,0.3) 100%); }
+        .core-card:nth-child(2) .core-card-img { background: linear-gradient(180deg, #ECFDF5 0%, rgba(236,253,245,0.3) 100%); }
+        .core-card:nth-child(3) .core-card-img { background: linear-gradient(180deg, #FFF7ED 0%, rgba(255,247,237,0.3) 100%); }
+        .core-card:nth-child(4) .core-card-img { background: linear-gradient(180deg, #FEF2F2 0%, rgba(254,242,242,0.3) 100%); }
+        .core-card-img img {
+            width: 160px;
+            height: auto;
+            border-radius: 14px 14px 0 0;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+            display: block;
+        }
+        .core-card-body {
+            padding: 20px 24px 24px 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .core-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+        .core-card p {
+            font-size: 14px;
+            line-height: 1.65;
+            color: var(--text-secondary);
+            flex: 1;
+        }
+        .core-tag {
+            display: inline-block;
+            margin-top: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 5px 14px;
+            border-radius: 50px;
+            letter-spacing: 0.3px;
+            width: fit-content;
+        }
+        .core-card:nth-child(1) .core-tag { background: #DBEAFE; color: #1D4ED8; }
+        .core-card:nth-child(2) .core-tag { background: #D1FAE5; color: #059669; }
+        .core-card:nth-child(3) .core-tag { background: #FEF3C7; color: #D97706; }
+        .core-card:nth-child(4) .core-tag { background: #FEE2E2; color: #DC2626; }
+
+        /* ============================================
+           SLIDE 3 — OVERVIEW FEATURES
+           ============================================ */
+        .slide-overview {
+            background: linear-gradient(180deg, var(--white) 0%, var(--bg-start) 100%);
+            padding: 50px 70px;
+        }
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 24px;
+            flex: 1;
+            max-height: calc(100vh - 200px);
+        }
+        .overview-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(37,99,235,0.06);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding: 24px;
+            transition: all 0.3s ease;
+            cursor: default;
+            overflow: hidden;
+        }
+        .overview-card:hover {
+            box-shadow: var(--card-shadow-hover);
+            transform: translateY(-3px);
+        }
+        .overview-card-img {
+            flex: 0 0 170px;
+            height: 300px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+        }
+        .overview-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+        }
+        .overview-card-body {
+            flex: 1;
+            min-width: 0;
+        }
+        .overview-card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 14px;
+            font-size: 24px;
+        }
+        .overview-card-body h3 {
+            font-size: 21px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 10px;
+        }
+        .overview-card-body p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        /* ============================================
+           SLIDE 4 — DO HUYET AP CHI TIET
+           ============================================ */
+        .slide-measure {
+            background: linear-gradient(135deg, #EFF6FF 0%, #F0FDF4 100%);
+            padding: 50px 70px;
+        }
+        .measure-layout {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+            flex: 1;
+            max-height: calc(100vh - 200px);
+        }
+        .measure-phones {
+            flex: 0 0 auto;
+            display: flex;
+            gap: 16px;
+            align-items: flex-end;
+        }
+        .measure-phone {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 5px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+            transition: all 0.3s ease;
+        }
+        .measure-phone:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(37,99,235,0.18);
+        }
+        .measure-phone img {
+            border-radius: 19px;
+            display: block;
+            width: 170px;
+            height: auto;
+        }
+        .measure-phone-label {
+            text-align: center;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-top: 10px;
+            padding-bottom: 4px;
+        }
+        .measure-info {
+            flex: 1;
+        }
+        .measure-info h3 {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 12px;
+        }
+        .measure-info > p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: 28px;
+            max-width: 520px;
+        }
+        .measure-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .measure-method {
+            background: var(--white);
+            border: 1px solid rgba(37,99,235,0.08);
+            border-radius: 16px;
+            padding: 20px 24px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            transition: all 0.3s ease;
+        }
+        .measure-method:hover {
+            box-shadow: 0 4px 20px rgba(37,99,235,0.10);
+        }
+        .method-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 22px;
+        }
+        .method-icon.blue { background: #DBEAFE; }
+        .method-icon.green { background: #D1FAE5; }
+        .measure-method h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+        .measure-method p {
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        /* ============================================
+           SLIDE 5 — MORE FEATURES
+           ============================================ */
+        .slide-more {
+            background: linear-gradient(180deg, var(--bg-start) 0%, var(--white) 100%);
+            padding: 50px 70px;
+        }
+        .more-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+            flex: 1;
+            max-height: calc(100vh - 200px);
+        }
+        .more-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(37,99,235,0.06);
+            border-radius: 20px;
+            display: flex;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .more-card:hover {
+            box-shadow: var(--card-shadow-hover);
+            transform: translateY(-3px);
+        }
+        .more-card-img {
+            flex: 0 0 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 0 20px 20px;
+        }
+        .more-card-img img {
+            width: 140px;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+        }
+        .more-card-body {
+            flex: 1;
+            padding: 28px 28px 28px 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .more-card-body h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+        .more-card-body p {
+            font-size: 14px;
+            line-height: 1.65;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+        .more-tag {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 50px;
+            width: fit-content;
+        }
+
+        /* ============================================
+           SLIDE 6 — COMING SOON (Blue-White Hero Style)
+           ============================================ */
+        .slide-coming {
+            background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 40%, #3B82F6 70%, #60A5FA 100%);
+            color: var(--white);
+            padding: 50px 70px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        /* Decorative background circles */
+        .slide-coming::before {
+            content: '';
+            position: absolute;
+            width: 400px; height: 400px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.04);
+            top: -100px; right: -80px;
+            z-index: 0;
+        }
+        .slide-coming::after {
+            content: '';
+            position: absolute;
+            width: 250px; height: 250px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.03);
+            bottom: -60px; left: -40px;
+            z-index: 0;
+        }
+        .coming-header {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: 36px;
+        }
+        .coming-header-text {
+            flex: 1;
+        }
+        .coming-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.25);
+            padding: 8px 22px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            width: fit-content;
+            margin-bottom: 16px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .coming-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent-light);
+            animation: pulse 2s infinite;
+        }
+        .coming-title {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            line-height: 1.15;
+        }
+        .coming-title .highlight-coming {
+            background: linear-gradient(90deg, #FCD34D, #F59E0B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .coming-subtitle {
+            font-size: 16px;
+            color: rgba(255,255,255,0.75);
+            max-width: 520px;
+            line-height: 1.6;
+        }
+        .coming-header-mascot {
+            flex: 0 0 auto;
+            margin-left: 30px;
+        }
+        .coming-header-mascot img {
+            width: 130px;
+            height: auto;
+            filter: drop-shadow(0 8px 24px rgba(0,0,0,0.25));
+            animation: mascotFloat 4s ease-in-out infinite;
+        }
+        @keyframes mascotFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        /* Coming Soon — 2-column layout */
+        .coming-body {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            gap: 28px;
+            flex: 1;
+            max-height: calc(100vh - 280px);
+        }
+        .coming-card {
+            flex: 1;
+            background: rgba(255,255,255,0.10);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 24px;
+            padding: 32px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .coming-card:hover {
+            background: rgba(255,255,255,0.16);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+        }
+        .coming-card-top {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .coming-card-mascot {
+            flex: 0 0 80px;
+        }
+        .coming-card-mascot img {
+            width: 80px;
+            height: auto;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2));
+            transition: transform 0.3s ease;
+        }
+        .coming-card:hover .coming-card-mascot img {
+            transform: scale(1.1) rotate(-3deg);
+        }
+        .coming-card-top h3 {
+            font-size: 22px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        .coming-card-desc {
+            font-size: 15px;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 20px;
+        }
+        .coming-bullets {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            flex: 1;
+        }
+        .coming-bullets li {
+            font-size: 14px;
+            color: rgba(255,255,255,0.92);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            line-height: 1.55;
+        }
+        .coming-bullet-icon {
+            flex: 0 0 28px;
+            height: 28px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            margin-top: 1px;
+        }
+        .coming-bullet-icon.yellow { background: rgba(252,211,77,0.25); }
+        .coming-bullet-icon.green  { background: rgba(52,211,153,0.25); }
+        .coming-bullet-icon.pink   { background: rgba(244,114,182,0.25); }
+        .coming-bullet-icon.blue   { background: rgba(96,165,250,0.25); }
+        .coming-bullet-icon.red    { background: rgba(248,113,113,0.25); }
+
+        /* Phone screenshot inside card */
+        .coming-card-phone {
+            margin-top: 18px;
+            display: flex;
+            justify-content: center;
+        }
+        .coming-card-phone img {
+            width: 210px;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 8px 28px rgba(0,0,0,0.25);
+            border: 3px solid rgba(255,255,255,0.15);
+        }
+
+        /* Floating accent dots */
+        .coming-float-dot {
+            position: absolute;
+            border-radius: 50%;
+            z-index: 1;
+            animation: floatDot 5s ease-in-out infinite;
+        }
+        .coming-float-dot.dot1 {
+            width: 12px; height: 12px;
+            background: var(--accent-light);
+            top: 14%; right: 20%;
+        }
+        .coming-float-dot.dot2 {
+            width: 8px; height: 8px;
+            background: rgba(255,255,255,0.3);
+            bottom: 18%; left: 8%;
+            animation-delay: 1.5s;
+        }
+        .coming-float-dot.dot3 {
+            width: 10px; height: 10px;
+            background: #34D399;
+            top: 40%; right: 5%;
+            animation-delay: 3s;
+        }
+        @keyframes floatDot {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.6; }
+            50% { transform: translateY(-14px) scale(1.3); opacity: 1; }
+        }
+
+        /* === COMMON BULLET ICON === */
+        .bullet-icon {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: #DBEAFE;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+        .bullet-icon svg {
+            width: 12px;
+            height: 12px;
+            fill: none;
+            stroke: var(--primary);
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* === ANIMATIONS === */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-in { animation: fadeInUp 0.6s ease forwards; }
+        .delay-1 { animation-delay: 0.1s; opacity: 0; }
+        .delay-2 { animation-delay: 0.2s; opacity: 0; }
+        .delay-3 { animation-delay: 0.3s; opacity: 0; }
+        .delay-4 { animation-delay: 0.4s; opacity: 0; }
+        .delay-5 { animation-delay: 0.5s; opacity: 0; }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 1280px) {
+            .hero-title { font-size: 42px; }
+            .hero-left { padding: 50px 60px; }
+            .hero-logo { width: 140px; }
+            .phone-frame.center img { width: 190px; }
+            .phone-frame.side-left img,
+            .phone-frame.side-right img { width: 160px; }
+            .core-grid { grid-template-columns: repeat(2, 1fr); }
+            .core-card-img img { width: 120px; }
+            .overview-grid { grid-template-columns: repeat(2, 1fr); }
+            .measure-phone img { width: 140px; }
+            .more-grid { grid-template-columns: 1fr; }
+            .section-title { font-size: 34px; }
+            .slide-core, .slide-overview, .slide-measure, .slide-more { padding: 40px 50px; }
+            .coming-title { font-size: 36px; }
+            .coming-header-mascot img { width: 100px; }
+            .coming-card-top h3 { font-size: 19px; }
+            .coming-card-mascot img { width: 65px; }
+            .coming-card-mascot { flex: 0 0 65px; }
+            .overview-card-img { flex: 0 0 140px; height: 260px; }
+            .overview-card-body h3 { font-size: 18px; }
+            .overview-card-body p { font-size: 14px; }
+        }
+        @media (max-width: 768px) {
+            .hero-content { flex-direction: column; }
+            .hero-left { padding: 30px; flex: none; }
+            .hero-right { flex: 1; }
+            .hero-title { font-size: 30px; }
+            .hero-stats { gap: 20px; }
+            .hero-stat-number { font-size: 26px; }
+            .core-grid { grid-template-columns: 1fr; }
+            .overview-grid { grid-template-columns: 1fr; }
+            .measure-layout { flex-direction: column; }
+            .coming-body { flex-direction: column; }
+            .coming-title { font-size: 26px; }
+            .coming-header-mascot img { width: 80px; }
+            .slide-coming { padding: 30px; }
+            .overview-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- PROGRESS BAR -->
+<div class="progress-bar">
+    <div class="progress-fill" id="progressFill"></div>
+</div>
+
+<!-- ARROW BUTTONS -->
+<button class="nav-arrow prev hidden" id="prevBtn" aria-label="Slide trước">
+    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+</button>
+<button class="nav-arrow next" id="nextBtn" aria-label="Slide tiếp">
+    <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+</button>
+
+<!-- BOTTOM NAV -->
+<nav class="slide-nav" id="slideNav">
+    <button class="nav-dot active" data-slide="0">Giới thiệu</button>
+    <button class="nav-dot" data-slide="1">Giá trị</button>
+    <button class="nav-dot" data-slide="2">Tính năng</button>
+    <button class="nav-dot" data-slide="3">Đo huyết áp</button>
+    <button class="nav-dot" data-slide="4">Thêm nữa</button>
+    <button class="nav-dot" data-slide="5">Sắp ra mắt</button>
+</nav>
+
+<!-- SLIDES -->
+<div class="slides-wrapper" id="slidesWrapper">
+
+    <!-- ========================================
+         SLIDE 1: HERO — Giới thiệu
+         ======================================== -->
+    <div class="slide slide-hero">
+        <span class="slide-number">01 / 06</span>
+        <div class="hero-content">
+            <div class="hero-left">
+                <img src="../Logo Nhà thuốc Long Châu.png" alt="Logo Nhà Thuốc Long Châu" class="hero-logo animate-in delay-1">
+                <div class="hero-badge animate-in delay-2">Hệ sinh thái Nhà Thuốc Long Châu</div>
+                <h1 class="hero-title animate-in delay-3">
+                    Bác sĩ<br>
+                    <span class="highlight">Long Châu 247</span>
+                </h1>
+                <p class="hero-subtitle animate-in delay-4">
+                    Người bạn đồng hành sức khoẻ 24/7 cho bạn và cả gia đình. Theo dõi huyết áp, nhận tư vấn thực từ bác sĩ chuyên khoa, kết nối người thân &mdash; tất cả chỉ trong 1 ứng dụng.
+                </p>
+                <div class="hero-stats animate-in delay-5">
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">24/7</span>
+                        <span class="hero-stat-label">Bác sĩ đồng hành</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">~40s</span>
+                        <span class="hero-stat-label">Đo huyết áp bằng AI</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">2,400+</span>
+                        <span class="hero-stat-label">Nhà thuốc kết nối</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-right">
+                <div class="hero-phones">
+                    <div class="phone-frame side-left animate-in delay-2">
+                        <img src="Đo bằng quét khuôn mặt.jpg" alt="Đo huyết áp bằng quét khuôn mặt AI">
+                    </div>
+                    <div class="phone-frame center animate-in delay-3">
+                        <img src="Màn trang chủ.jpg" alt="Trang chủ Bác sĩ Long Châu 247">
+                    </div>
+                    <div class="phone-frame side-right animate-in delay-4">
+                        <img src="Báo cáo sức khỏe.jpg" alt="Báo cáo sức khoẻ">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================
+         SLIDE 2: CORE VALUE — Giá trị cốt lõi
+         ======================================== -->
+    <div class="slide slide-core slide-light">
+        <span class="slide-number">02 / 06</span>
+        <div class="section-label">Giá trị cốt lõi</div>
+        <h2 class="section-title">Vì sao chọn Bác sĩ Long Châu 247?</h2>
+        <p class="section-subtitle">4 lý do khiến hàng ngàn người dùng tin tưởng mỗi ngày</p>
+
+        <div class="core-grid">
+            <!-- Card 1: Bác sĩ đồng hành -->
+            <div class="core-card">
+                <div class="core-card-img">
+                    <img src="Màn trang chủ.jpg" alt="Bác sĩ tư vấn trên trang chủ">
+                </div>
+                <div class="core-card-body">
+                    <h3>Bác sĩ thực đồng hành</h3>
+                    <p>Không phải chatbot. Bác sĩ Long Châu xem chỉ số sau mỗi lần đo, gửi lời khuyên cá nhân. Nhắn cho & gọi tư vấn 24/7.</p>
+                    <span class="core-tag">Tư vấn cá nhân</span>
+                </div>
+            </div>
+
+            <!-- Card 2: Kết nối gia đình -->
+            <div class="core-card">
+                <div class="core-card-img">
+                    <img src="tab cả nhà.jpg" alt="Vòng tròn gia đình">
+                </div>
+                <div class="core-card-body">
+                    <h3>Kết nối cả gia đình</h3>
+                    <p>Thêm ba mẹ, ông bà vào Vòng tròn gia đình. Xem chỉ số huyết áp người thân từ xa, nhắn nhở đo mỗi ngày.</p>
+                    <span class="core-tag">An tâm từ xa</span>
+                </div>
+            </div>
+
+            <!-- Card 3: Theo dõi chỉ số -->
+            <div class="core-card">
+                <div class="core-card-img">
+                    <img src="Báo cáo sức khỏe.jpg" alt="Báo cáo & theo dõi chỉ số">
+                </div>
+                <div class="core-card-body">
+                    <h3>Theo dõi sức khoẻ liên tục</h3>
+                    <p>Nhật ký chỉ số, báo cáo tuần trực quan. Phát hiện sớm bất thường, nhận cảnh báo kịp thời.</p>
+                    <span class="core-tag">Cảnh báo thông minh</span>
+                </div>
+            </div>
+
+            <!-- Card 4: Face Scan -->
+            <div class="core-card">
+                <div class="core-card-img">
+                    <img src="Đo bằng quét khuôn mặt.jpg" alt="Quét khuôn mặt đo huyết áp">
+                </div>
+                <div class="core-card-body">
+                    <h3>Đo huyết áp bằng quét khuôn mặt</h3>
+                    <p>Công nghệ rPPG quét khuôn mặt qua camera, kết quả chỉ trong ~40 giây. Không cần máy đo.</p>
+                    <span class="core-tag">Công nghệ hiện đại</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================
+         SLIDE 3: OVERVIEW — Tổng quan tính năng
+         ======================================== -->
+    <div class="slide slide-overview slide-light">
+        <span class="slide-number">03 / 06</span>
+        <div class="section-label">Trải nghiệm ứng dụng</div>
+        <h2 class="section-title">Tổng quan các tính năng</h2>
+        <p class="section-subtitle">Mọi thứ bạn cần để quản lý sức khỏe — trong một ứng dụng duy nhất</p>
+
+        <div class="overview-grid">
+            <!-- 1. Đo huyết áp -->
+            <div class="overview-card">
+                <div class="overview-card-img">
+                    <img src="Đo huyết áp.jpg" alt="Đo huyết áp">
+                </div>
+                <div class="overview-card-body">
+                    <div class="overview-card-icon" style="background:#D1FAE5;">
+                        <span>💓</span>
+                    </div>
+                    <h3>Đo huyết áp</h3>
+                    <p>2 cách đo: bằng máy đo truyền thống hoặc quét khuôn mặt ~40 giây. Nhận kết quả kèm lời khuyên từ bác sĩ chuyên khoa.</p>
+                </div>
+            </div>
+
+            <!-- 2. Đo bằng khuôn mặt -->
+            <div class="overview-card">
+                <div class="overview-card-img">
+                    <img src="Đo bằng quét khuôn mặt.jpg" alt="Đo bằng quét khuôn mặt">
+                </div>
+                <div class="overview-card-body">
+                    <div class="overview-card-icon" style="background:#FEF3C7;">
+                        <span>📸</span>
+                    </div>
+                    <h3>Đo bằng khuôn mặt</h3>
+                    <p>Công nghệ rPPG phân tích tín hiệu mạch máu qua camera trước. Không cần thiết bị ngoài, chỉ cần giữ yên ~40 giây.</p>
+                </div>
+            </div>
+
+            <!-- 3. Báo cáo sức khoẻ -->
+            <div class="overview-card">
+                <div class="overview-card-img">
+                    <img src="Báo cáo sức khỏe.jpg" alt="Báo cáo sức khoẻ">
+                </div>
+                <div class="overview-card-body">
+                    <div class="overview-card-icon" style="background:#DBEAFE;">
+                        <span>📊</span>
+                    </div>
+                    <h3>Báo cáo sức khoẻ</h3>
+                    <p>Nhật ký chỉ số, báo cáo tuần trực quan, theo dõi BMI. Phát hiện bất thường sớm, chia sẻ cho bác sĩ dễ dàng.</p>
+                </div>
+            </div>
+
+            <!-- 4. SOS & Hỗ trợ -->
+            <div class="overview-card">
+                <div class="overview-card-img">
+                    <img src="SOS.jpg" alt="Gọi khẩn cấp SOS">
+                </div>
+                <div class="overview-card-body">
+                    <div class="overview-card-icon" style="background:#FEE2E2;">
+                        <span>🆘</span>
+                    </div>
+                    <h3>SOS & Hỗ trợ 24/7</h3>
+                    <p>Nhắn cho bác sĩ, gọi tư vấn chuyên khoa, gọi khẩn cấp — mọi lúc mọi nơi. Luôn có bác sĩ sẵn sàng đồng hành.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================
+         SLIDE 4: ĐO HUYẾT ÁP CHI TIẾT
+         ======================================== -->
+    <div class="slide slide-measure slide-light">
+        <span class="slide-number">04 / 06</span>
+        <div class="section-label">Tính năng nổi bật</div>
+        <h2 class="section-title">Đo huyết áp — Dễ dàng, chính xác</h2>
+        <p class="section-subtitle">Chọn cách đo phù hợp với bạn — bằng máy đo hoặc chỉ cần camera điện thoại</p>
+
+        <div class="measure-layout">
+            <div class="measure-phones">
+                <div class="measure-phone">
+                    <img src="Đo huyết áp.jpg" alt="Chọn phương pháp đo">
+                    <div class="measure-phone-label">Chọn cách đo</div>
+                </div>
+                <div class="measure-phone">
+                    <img src="đo khuôn mặt.png" alt="Đo bằng khuôn mặt">
+                    <div class="measure-phone-label">Đo bằng khuôn mặt</div>
+                </div>
+                <div class="measure-phone">
+                    <img src="kết quả phân tích đo khuôn mặt.png" alt="Kết quả phân tích">
+                    <div class="measure-phone-label">Kết quả phân tích</div>
+                </div>
+            </div>
+
+            <div class="measure-info">
+                <h3>2 phương pháp đo</h3>
+                <p>Sau mỗi lần đo, nhận kết quả SYS/DIA/nhịp tim kèm lời khuyên từ bác sĩ chuyên khoa. Tích +10 Xu thưởng mỗi lần đo.</p>
+
+                <div class="measure-methods">
+                    <div class="measure-method">
+                        <div class="method-icon blue">🩺</div>
+                        <div>
+                            <h4>Cách 1: Đo bằng máy đo huyết áp</h4>
+                            <p>Chụp ảnh kết quả trên máy hoặc tự nhập chỉ số. Hỗ trợ mọi loại máy đo phổ biến trên thị trường.</p>
+                        </div>
+                    </div>
+                    <div class="measure-method">
+                        <div class="method-icon green">📸</div>
+                        <div>
+                            <h4>Cách 2: Đo bằng quét khuôn mặt</h4>
+                            <p>Công nghệ rPPG phân tích tín hiệu mạch máu qua camera trước. Chỉ cần giữ yên khuôn mặt ~40 giây. Không cần máy đo, không cần thiết bị ngoài. Hướng dẫn bằng giọng nói, dễ dùng cho người lớn tuổi.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================
+         SLIDE 5: THÊM TÍNH NĂNG
+         ======================================== -->
+    <div class="slide slide-more slide-light">
+        <span class="slide-number">05 / 06</span>
+        <div class="section-label">Và còn nhiều hơn nữa</div>
+        <h2 class="section-title">Hệ sinh thái chăm sóc toàn diện</h2>
+        <p class="section-subtitle">Báo cáo thông minh, hỗ trợ khẩn cấp, kiến thức uy tín và phần thưởng hấp dẫn</p>
+
+        <div class="more-grid">
+            <!-- Báo cáo sức khoẻ -->
+            <div class="more-card">
+                <div class="more-card-img">
+                    <img src="Báo cáo sức khỏe.jpg" alt="Báo cáo sức khoẻ">
+                </div>
+                <div class="more-card-body">
+                    <h3>📊 Báo cáo sức khoẻ</h3>
+                    <p>Tổng hợp chỉ số trung bình, nhật ký đo, nhật ký tư vấn bác sĩ, theo dõi thể trạng BMI. Biểu đồ rõ ràng, dễ đọc.</p>
+                    <span class="more-tag" style="background:#DBEAFE;color:#1D4ED8;">Trực quan</span>
+                </div>
+            </div>
+
+            <!-- SOS -->
+            <div class="more-card">
+                <div class="more-card-img">
+                    <img src="SOS.jpg" alt="Gọi khẩn cấp SOS">
+                </div>
+                <div class="more-card-body">
+                    <h3>🆘 Hỗ trợ & Gọi khẩn cấp</h3>
+                    <p>Nhắn cho bác sĩ 24/7, gọi tư vấn chuyên khoa, gọi khẩn cấp khi cần. Luôn có bác sĩ sẵn sàng hỗ trợ bạn và gia đình.</p>
+                    <span class="more-tag" style="background:#FEE2E2;color:#DC2626;">24/7</span>
+                </div>
+            </div>
+
+            <!-- Kiến thức -->
+            <div class="more-card">
+                <div class="more-card-img">
+                    <img src="Màn kiến thức.jpg" alt="Kiến thức sức khoẻ">
+                </div>
+                <div class="more-card-body">
+                    <h3>📚 Kiến thức sức khoẻ</h3>
+                    <p>Thư viện bài viết về huyết áp, tim mạch, dinh dưỡng, vận động. Nội dung kiểm duyệt bởi đội ngũ y tế Long Châu.</p>
+                    <span class="more-tag" style="background:#D1FAE5;color:#059669;">Uy tín</span>
+                </div>
+            </div>
+
+            <!-- Tích điểm -->
+            <div class="more-card">
+                <div class="more-card-img">
+                    <img src="Tích điểm Nhận quà.jpg" alt="Tích điểm nhận quà">
+                </div>
+                <div class="more-card-body">
+                    <h3>🎁 Tích điểm, nhận quà</h3>
+                    <p>Đo huyết áp, đọc bài, hoàn thành nhiệm vụ hàng ngày đều tích Xu. Thử thách 7 ngày liên tục nhận thưởng lớn. Đổi quà tại nhà thuốc.</p>
+                    <span class="more-tag" style="background:#FEF3C7;color:#D97706;">Phần thưởng</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================
+         SLIDE 6: COMING SOON — Style xanh trắng
+         ======================================== -->
+    <div class="slide slide-coming">
+        <span class="slide-number" style="color:rgba(255,255,255,0.4);">06 / 06</span>
+
+        <!-- Floating dots -->
+        <div class="coming-float-dot dot1"></div>
+        <div class="coming-float-dot dot2"></div>
+        <div class="coming-float-dot dot3"></div>
+
+        <!-- Header: badge + title + mascot chào -->
+        <div class="coming-header">
+            <div class="coming-header-text">
+                <div class="coming-badge">Coming Soon</div>
+                <h2 class="coming-title">
+                    Tính năng <span class="highlight-coming">sắp ra mắt</span>
+                </h2>
+                <p class="coming-subtitle">
+                    Chúng tôi liên tục phát triển để mang đến trải nghiệm chăm sóc sức khỏe tốt hơn cho bạn và gia đình.
+                </p>
+            </div>
+            <div class="coming-header-mascot">
+                <img src="../Bộ mascot/mascot-happy.png" alt="Mascot Long Châu vui vẻ">
+            </div>
+        </div>
+
+        <!-- Body: 2 cards side by side -->
+        <div class="coming-body">
+            <!-- Card 1: Nội dung cá nhân hóa -->
+            <div class="coming-card">
+                <div class="coming-card-top">
+                    <div class="coming-card-mascot">
+                        <img src="../Bộ mascot/mascot-surprised.png" alt="Mascot cá nhân hoá">
+                    </div>
+                    <h3>🎯 Nội dung cá nhân hoá</h3>
+                </div>
+                <p class="coming-card-desc">Đưa đúng thông tin, đến đúng người, vào đúng lúc — nội dung thay đổi theo vai trò và giai đoạn sức khoẻ.</p>
+                <ul class="coming-bullets">
+                    <li>
+                        <span class="coming-bullet-icon yellow">👤</span>
+                        <span>Cá nhân hoá theo bạn — nội dung phù hợp từng người</span>
+                    </li>
+                    <li>
+                        <span class="coming-bullet-icon green">🥗</span>
+                        <span>Dinh dưỡng đơn giản — quy đổi "phần ăn", không cần tính calorie</span>
+                    </li>
+                    <li>
+                        <span class="coming-bullet-icon pink">💝</span>
+                        <span>Chế độ người chăm sóc — nội dung riêng cho người thân</span>
+                    </li>
+                    <li>
+                        <span class="coming-bullet-icon red">🚨</span>
+                        <span>Nhận biết đột quỵ (FAST) + gọi khẩn cấp</span>
+                    </li>
+                </ul>
+                <div class="coming-card-phone">
+                    <img src="Cá nhân hóa.jpg" alt="Nội dung cá nhân hoá">
+                </div>
+            </div>
+
+            <!-- Card 2: Đánh giá nguy cơ tim mạch -->
+            <div class="coming-card">
+                <div class="coming-card-top">
+                    <div class="coming-card-mascot">
+                        <img src="../Bộ mascot/mascot-shocked.png" alt="Mascot đánh giá nguy cơ">
+                    </div>
+                    <h3>❤️‍🩹 Đánh giá nguy cơ tim mạch</h3>
+                </div>
+                <p class="coming-card-desc">Hiểu nguy cơ nhồi máu cơ tim và đột quỵ trong 10 năm tới — chỉ vài câu hỏi đơn giản, theo chuẩn WHO.</p>
+                <ul class="coming-bullets">
+                    <li>
+                        <span class="coming-bullet-icon blue">❓</span>
+                        <span>Chỉ cần 1 câu hỏi thêm — tích hợp với 4/5 thông tin Bác sĩ LC247 đã có</span>
+                    </li>
+                    <li>
+                        <span class="coming-bullet-icon green">🌍</span>
+                        <span>Theo chuẩn WHO — công cụ đánh giá sử dụng toàn cầu</span>
+                    </li>
+                    <li>
+                        <span class="coming-bullet-icon yellow">🟢</span>
+                        <span>4 mức dễ hiểu — Xanh/Vàng/Cam/Đỏ kèm khuyến nghị cụ thể</span>
+                    </li>
+                    <li>
+                        <span class="coming-bullet-icon pink">📉</span>
+                        <span>Nguy cơ có thể thay đổi — kiểm soát HA, ăn uống, bỏ thuốc</span>
+                    </li>
+                </ul>
+                <div class="coming-card-phone">
+                    <img src="Đánh giá nguy cơ.png" alt="Đánh giá nguy cơ tim mạch">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div><!-- end slides-wrapper -->
+
+<script>
+(function() {
+    const wrapper = document.getElementById('slidesWrapper');
+    const progressFill = document.getElementById('progressFill');
+    const navDots = document.querySelectorAll('.nav-dot');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const totalSlides = 6;
+    let currentSlide = 0;
+    let isTransitioning = false;
+
+    function goToSlide(n) {
+        if (isTransitioning || n < 0 || n >= totalSlides) return;
+        isTransitioning = true;
+        currentSlide = n;
+        wrapper.style.transform = 'translateX(-' + (n * 100) + 'vw)';
+        progressFill.style.width = ((n + 1) / totalSlides * 100) + '%';
+
+        navDots.forEach(function(d, i) {
+            d.classList.toggle('active', i === n);
+        });
+
+        // Arrow visibility
+        prevBtn.classList.toggle('hidden', n === 0);
+        nextBtn.classList.toggle('hidden', n === totalSlides - 1);
+
+        setTimeout(function() { isTransitioning = false; }, 700);
+    }
+
+    // Nav dots click
+    navDots.forEach(function(dot) {
+        dot.addEventListener('click', function() { goToSlide(+dot.dataset.slide); });
+    });
+
+    // Arrow buttons click
+    prevBtn.addEventListener('click', function() { goToSlide(currentSlide - 1); });
+    nextBtn.addEventListener('click', function() { goToSlide(currentSlide + 1); });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowRight' || e.key === ' ') {
+            e.preventDefault();
+            goToSlide(currentSlide + 1);
+        } else if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            goToSlide(currentSlide - 1);
+        } else if (e.key === 'f' || e.key === 'F') {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else {
+                document.exitFullscreen();
+            }
+        }
+    });
+
+    // Touch support
+    var touchStartX = 0;
+    document.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; });
+    document.addEventListener('touchend', function(e) {
+        var diff = touchStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 60) {
+            if (diff > 0) goToSlide(currentSlide + 1);
+            else goToSlide(currentSlide - 1);
+        }
+    });
+
+    // Mouse wheel
+    var wheelTimeout;
+    document.addEventListener('wheel', function(e) {
+        clearTimeout(wheelTimeout);
+        wheelTimeout = setTimeout(function() {
+            if (e.deltaY > 30) goToSlide(currentSlide + 1);
+            else if (e.deltaY < -30) goToSlide(currentSlide - 1);
+        }, 50);
+    }, { passive: true });
+
+    // Initialize
+    goToSlide(0);
+})();
+</script>
+
+</body>
+</html>

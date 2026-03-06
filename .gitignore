@@ -1,0 +1,12 @@
+*.py
+*.ps1
+nul
+~$*
+.claude/
+lc247-context/
+lc247-onboarding/
+Onboarding/
+vercel-deploy/
+LC247-2mat-in.html
+LC247-Gioi-thieu.pptx
+LC247-Onboarding-Guide.pptx
