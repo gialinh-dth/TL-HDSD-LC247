@@ -340,7 +340,7 @@
            ============================================ */
         .slide-core {
             background: linear-gradient(180deg, var(--bg-start) 0%, var(--white) 100%);
-            padding: 50px 70px;
+            padding: 50px 70px 90px;
         }
         .section-label {
             font-size: 14px;
@@ -397,7 +397,6 @@
             transform: translateY(-4px);
         }
         .core-card:hover::before { opacity: 1; }
-
         .core-card-img {
             width: 100%;
             display: flex;
@@ -454,89 +453,18 @@
         .core-card:nth-child(4) .core-tag { background: #FEE2E2; color: #DC2626; }
 
         /* ============================================
-           SLIDE 3 — OVERVIEW FEATURES
-           ============================================ */
-        .slide-overview {
-            background: linear-gradient(180deg, var(--white) 0%, var(--bg-start) 100%);
-            padding: 50px 70px;
-        }
-        .overview-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            grid-template-rows: repeat(2, 1fr);
-            gap: 24px;
-            flex: 1;
-            max-height: calc(100vh - 200px);
-        }
-        .overview-card {
-            background: var(--card-bg);
-            border: 1px solid rgba(37,99,235,0.06);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            gap: 24px;
-            padding: 24px;
-            transition: all 0.3s ease;
-            cursor: default;
-            overflow: hidden;
-        }
-        .overview-card:hover {
-            box-shadow: var(--card-shadow-hover);
-            transform: translateY(-3px);
-        }
-        .overview-card-img {
-            flex: 0 0 170px;
-            height: 300px;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.10);
-        }
-        .overview-card-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: top;
-            display: block;
-        }
-        .overview-card-body {
-            flex: 1;
-            min-width: 0;
-        }
-        .overview-card-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 14px;
-            font-size: 24px;
-        }
-        .overview-card-body h3 {
-            font-size: 21px;
-            font-weight: 700;
-            color: var(--text);
-            margin-bottom: 10px;
-        }
-        .overview-card-body p {
-            font-size: 15px;
-            line-height: 1.7;
-            color: var(--text-secondary);
-        }
-
-        /* ============================================
-           SLIDE 4 — DO HUYET AP CHI TIET
+           SLIDE 3 — ĐO HUYẾT ÁP CHI TIẾT
            ============================================ */
         .slide-measure {
             background: linear-gradient(135deg, #EFF6FF 0%, #F0FDF4 100%);
-            padding: 50px 70px;
+            padding: 50px 70px 90px;
         }
         .measure-layout {
             display: flex;
             gap: 50px;
             align-items: center;
             flex: 1;
-            max-height: calc(100vh - 200px);
+            max-height: calc(100vh - 220px);
         }
         .measure-phones {
             flex: 0 0 auto;
@@ -569,9 +497,7 @@
             margin-top: 10px;
             padding-bottom: 4px;
         }
-        .measure-info {
-            flex: 1;
-        }
+        .measure-info { flex: 1; }
         .measure-info h3 {
             font-size: 32px;
             font-weight: 800;
@@ -628,18 +554,116 @@
         }
 
         /* ============================================
-           SLIDE 5 — MORE FEATURES
+           SLIDE 4 — KẾT QUẢ & HỖ TRỢ (MỚI)
+           ============================================ */
+        .slide-results {
+            background: linear-gradient(180deg, #F0FDF4 0%, var(--white) 50%, #EFF6FF 100%);
+            padding: 50px 70px 90px;
+        }
+        .results-layout {
+            display: flex;
+            gap: 28px;
+            flex: 1;
+            min-height: 0;
+        }
+        .results-section {
+            flex: 1;
+            min-width: 0;
+        }
+        .results-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(37,99,235,0.08);
+            border-radius: 20px;
+            padding: 28px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+        .results-card:hover {
+            box-shadow: var(--card-shadow-hover);
+            transform: translateY(-3px);
+        }
+        .results-card-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+        .results-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+        .results-card h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text);
+        }
+        .results-card > p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+        .results-bullets {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .results-bullets li {
+            font-size: 14px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            line-height: 1.55;
+        }
+        .results-bullet-dot {
+            flex: 0 0 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 1px;
+            font-size: 12px;
+        }
+        .results-phones {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex: 1;
+            align-items: flex-end;
+        }
+        .results-phones img {
+            width: 150px;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+        }
+
+        /* ============================================
+           SLIDE 5 — THÊM TÍNH NĂNG
            ============================================ */
         .slide-more {
             background: linear-gradient(180deg, var(--bg-start) 0%, var(--white) 100%);
-            padding: 50px 70px;
+            padding: 50px 70px 90px;
         }
         .more-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 22px;
             flex: 1;
-            max-height: calc(100vh - 200px);
+            max-height: calc(100vh - 220px);
         }
         .more-card {
             background: var(--card-bg);
@@ -695,19 +719,18 @@
         }
 
         /* ============================================
-           SLIDE 6 — COMING SOON (Blue-White Hero Style)
+           SLIDE 6 — COMING SOON
            ============================================ */
         .slide-coming {
             background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 40%, #3B82F6 70%, #60A5FA 100%);
             color: var(--white);
-            padding: 30px 70px;
+            padding: 30px 70px 90px;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
             overflow: hidden;
             position: relative;
         }
-        /* Decorative background circles */
         .slide-coming::before {
             content: '';
             position: absolute;
@@ -734,9 +757,7 @@
             justify-content: space-between;
             margin-bottom: 16px;
         }
-        .coming-header-text {
-            flex: 1;
-        }
+        .coming-header-text { flex: 1; }
         .coming-badge {
             display: inline-flex;
             align-items: center;
@@ -793,8 +814,6 @@
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-12px); }
         }
-
-        /* Coming Soon — 2-column layout */
         .coming-body {
             position: relative;
             z-index: 2;
@@ -813,7 +832,7 @@
             transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
-            overflow: visible;
+            overflow: hidden;
         }
         .coming-card:hover {
             background: rgba(255,255,255,0.16);
@@ -824,13 +843,11 @@
             display: flex;
             align-items: center;
             gap: 16px;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
         }
-        .coming-card-mascot {
-            flex: 0 0 80px;
-        }
+        .coming-card-mascot { flex: 0 0 70px; }
         .coming-card-mascot img {
-            width: 80px;
+            width: 70px;
             height: auto;
             filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2));
             transition: transform 0.3s ease;
@@ -839,7 +856,7 @@
             transform: scale(1.1) rotate(-3deg);
         }
         .coming-card-top h3 {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 700;
             line-height: 1.3;
         }
@@ -857,21 +874,21 @@
             flex: 0 1 auto;
         }
         .coming-bullets li {
-            font-size: 14px;
+            font-size: 13px;
             color: rgba(255,255,255,0.92);
             display: flex;
             align-items: flex-start;
-            gap: 12px;
-            line-height: 1.55;
+            gap: 10px;
+            line-height: 1.5;
         }
         .coming-bullet-icon {
-            flex: 0 0 28px;
-            height: 28px;
+            flex: 0 0 26px;
+            height: 26px;
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 14px;
+            font-size: 13px;
             margin-top: 1px;
         }
         .coming-bullet-icon.yellow { background: rgba(252,211,77,0.25); }
@@ -879,23 +896,19 @@
         .coming-bullet-icon.pink   { background: rgba(244,114,182,0.25); }
         .coming-bullet-icon.blue   { background: rgba(96,165,250,0.25); }
         .coming-bullet-icon.red    { background: rgba(248,113,113,0.25); }
-
-        /* Phone screenshot inside card */
         .coming-card-phone {
-            margin-top: 12px;
+            margin-top: 10px;
             display: flex;
             justify-content: center;
             flex: 0 0 auto;
         }
         .coming-card-phone img {
-            width: 180px;
+            width: 160px;
             height: auto;
             border-radius: 16px;
             box-shadow: 0 8px 28px rgba(0,0,0,0.25);
             border: 3px solid rgba(255,255,255,0.15);
         }
-
-        /* Floating accent dots */
         .coming-float-dot {
             position: absolute;
             border-radius: 50%;
@@ -924,28 +937,6 @@
             50% { transform: translateY(-14px) scale(1.3); opacity: 1; }
         }
 
-        /* === COMMON BULLET ICON === */
-        .bullet-icon {
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            background: #DBEAFE;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            margin-top: 1px;
-        }
-        .bullet-icon svg {
-            width: 12px;
-            height: 12px;
-            fill: none;
-            stroke: var(--primary);
-            stroke-width: 3;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
         /* === ANIMATIONS === */
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
@@ -958,7 +949,9 @@
         .delay-4 { animation-delay: 0.4s; opacity: 0; }
         .delay-5 { animation-delay: 0.5s; opacity: 0; }
 
-        /* === RESPONSIVE === */
+        /* ============================================
+           RESPONSIVE — TABLET (<=1280px)
+           ============================================ */
         @media (max-width: 1280px) {
             .hero-title { font-size: 42px; }
             .hero-left { padding: 50px 60px; }
@@ -968,35 +961,141 @@
             .phone-frame.side-right img { width: 160px; }
             .core-grid { grid-template-columns: repeat(2, 1fr); }
             .core-card-img img { width: 120px; }
-            .overview-grid { grid-template-columns: repeat(2, 1fr); }
             .measure-phone img { width: 140px; }
             .more-grid { grid-template-columns: 1fr; }
             .section-title { font-size: 34px; }
-            .slide-core, .slide-overview, .slide-measure, .slide-more { padding: 40px 50px; }
+            .slide-core, .slide-measure, .slide-more, .slide-results { padding: 40px 50px 80px; }
             .coming-title { font-size: 36px; }
             .coming-header-mascot img { width: 100px; }
-            .coming-card-top h3 { font-size: 19px; }
-            .coming-card-mascot img { width: 65px; }
-            .coming-card-mascot { flex: 0 0 65px; }
-            .overview-card-img { flex: 0 0 140px; height: 260px; }
-            .overview-card-body h3 { font-size: 18px; }
-            .overview-card-body p { font-size: 14px; }
+            .coming-card-top h3 { font-size: 18px; }
+            .coming-card-mascot img { width: 60px; }
+            .coming-card-mascot { flex: 0 0 60px; }
+            .results-phones img { width: 130px; }
+            .results-card h3 { font-size: 19px; }
         }
+
+        /* ============================================
+           RESPONSIVE — MOBILE (<=768px)
+           ============================================ */
         @media (max-width: 768px) {
+            /* Nav: dots only */
+            .slide-nav {
+                bottom: 12px;
+                padding: 6px 10px;
+                gap: 4px;
+            }
+            .nav-dot {
+                height: 28px;
+                padding: 0 8px;
+                font-size: 0;
+                gap: 0;
+            }
+            .nav-dot::before {
+                width: 10px;
+                height: 10px;
+            }
+            .nav-arrow { width: 38px; height: 38px; }
+            .nav-arrow.prev { left: 8px; }
+            .nav-arrow.next { right: 8px; }
+            .nav-arrow svg { width: 18px; height: 18px; }
+
+            /* Hero */
             .hero-content { flex-direction: column; }
-            .hero-left { padding: 30px; flex: none; }
+            .hero-left { padding: 30px 24px 10px; flex: none; }
             .hero-right { flex: 1; }
-            .hero-title { font-size: 30px; }
-            .hero-stats { gap: 20px; }
-            .hero-stat-number { font-size: 26px; }
-            .core-grid { grid-template-columns: 1fr; }
-            .overview-grid { grid-template-columns: 1fr; }
-            .measure-layout { flex-direction: column; }
-            .coming-body { flex-direction: column; }
-            .coming-title { font-size: 26px; }
-            .coming-header-mascot img { width: 80px; }
-            .slide-coming { padding: 30px; }
-            .overview-grid { grid-template-columns: 1fr; }
+            .hero-title { font-size: 28px; margin-bottom: 14px; }
+            .hero-subtitle { font-size: 15px; line-height: 1.5; }
+            .hero-badge { font-size: 12px; padding: 6px 14px; margin-bottom: 16px; }
+            .hero-logo { width: 110px; margin-bottom: 16px; }
+            .hero-stats { gap: 16px; margin-top: 20px; }
+            .hero-stat-number { font-size: 22px; }
+            .hero-stat-label { font-size: 11px; }
+            .phone-frame.center img { width: 140px; }
+            .phone-frame.side-left img,
+            .phone-frame.side-right img { width: 110px; }
+            .slide-number { top: 14px; right: 16px; font-size: 11px; }
+
+            /* Core */
+            .slide-core { padding: 24px 20px 60px; }
+            .section-label { font-size: 11px; letter-spacing: 1.5px; margin-bottom: 6px; }
+            .section-title { font-size: 24px; margin-bottom: 4px; }
+            .section-subtitle { font-size: 14px; margin-bottom: 16px; }
+            .core-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+            .core-card-img { min-height: 120px; padding: 12px 12px 0; }
+            .core-card-img img { width: 100px; }
+            .core-card-body { padding: 12px 14px 14px; }
+            .core-card h3 { font-size: 13px; margin-bottom: 4px; }
+            .core-card p { font-size: 11px; line-height: 1.45; }
+            .core-tag { font-size: 10px; padding: 3px 10px; margin-top: 6px; }
+
+            /* Measure */
+            .slide-measure { padding: 24px 20px 60px; }
+            .measure-layout { flex-direction: column; gap: 20px; max-height: none; }
+            .measure-phones { gap: 8px; justify-content: center; }
+            .measure-phone img { width: 100px; }
+            .measure-phone-label { font-size: 10px; }
+            .measure-info h3 { font-size: 22px; }
+            .measure-info > p { font-size: 14px; margin-bottom: 14px; }
+            .measure-methods { gap: 10px; }
+            .measure-method { padding: 14px 16px; gap: 12px; }
+            .measure-method h4 { font-size: 13px; }
+            .measure-method p { font-size: 12px; }
+            .method-icon { width: 36px; height: 36px; font-size: 18px; }
+
+            /* Results */
+            .slide-results { padding: 24px 20px 60px; }
+            .results-layout { flex-direction: column; gap: 14px; }
+            .results-card { padding: 18px; }
+            .results-card h3 { font-size: 18px; }
+            .results-card > p { font-size: 13px; margin-bottom: 10px; }
+            .results-icon { width: 40px; height: 40px; font-size: 20px; }
+            .results-bullets { gap: 6px; margin-bottom: 12px; }
+            .results-bullets li { font-size: 12px; }
+            .results-phones { gap: 8px; }
+            .results-phones img { width: 110px; }
+
+            /* More */
+            .slide-more { padding: 24px 20px 60px; }
+            .more-grid { grid-template-columns: 1fr; gap: 12px; max-height: none; }
+            .more-card-img { flex: 0 0 90px; padding: 12px 0 12px 12px; }
+            .more-card-img img { width: 80px; }
+            .more-card-body { padding: 14px; }
+            .more-card-body h3 { font-size: 15px; margin-bottom: 4px; }
+            .more-card-body p { font-size: 12px; line-height: 1.5; margin-bottom: 6px; }
+
+            /* Coming Soon */
+            .slide-coming { padding: 24px 20px 60px; }
+            .coming-body { flex-direction: column; gap: 14px; }
+            .coming-title { font-size: 24px; }
+            .coming-subtitle { font-size: 13px; }
+            .coming-header { margin-bottom: 12px; }
+            .coming-header-mascot img { width: 70px; }
+            .coming-card { padding: 16px; }
+            .coming-card-top { gap: 10px; margin-bottom: 10px; }
+            .coming-card-top h3 { font-size: 16px; }
+            .coming-card-mascot { flex: 0 0 50px; }
+            .coming-card-mascot img { width: 50px; }
+            .coming-card-desc { font-size: 12px; margin-bottom: 8px; }
+            .coming-bullets li { font-size: 11px; gap: 8px; }
+            .coming-bullet-icon { flex: 0 0 22px; height: 22px; font-size: 11px; }
+            .coming-card-phone { margin-top: 8px; }
+            .coming-card-phone img { width: 120px; }
+        }
+
+        /* ============================================
+           RESPONSIVE — SMALL MOBILE (<=480px)
+           ============================================ */
+        @media (max-width: 480px) {
+            .hero-title { font-size: 24px; }
+            .hero-stats { flex-wrap: wrap; }
+            .phone-frame.center img { width: 120px; }
+            .phone-frame.side-left img,
+            .phone-frame.side-right img { width: 90px; }
+            .core-card-img { min-height: 100px; }
+            .core-card-img img { width: 80px; }
+            .measure-phone img { width: 85px; }
+            .results-phones img { width: 90px; }
+            .coming-card-phone img { width: 100px; }
         }
     </style>
 </head>
@@ -1019,8 +1118,8 @@
 <nav class="slide-nav" id="slideNav">
     <button class="nav-dot active" data-slide="0">Giới thiệu</button>
     <button class="nav-dot" data-slide="1">Giá trị</button>
-    <button class="nav-dot" data-slide="2">Tính năng</button>
-    <button class="nav-dot" data-slide="3">Đo huyết áp</button>
+    <button class="nav-dot" data-slide="2">Đo huyết áp</button>
+    <button class="nav-dot" data-slide="3">Kết quả</button>
     <button class="nav-dot" data-slide="4">Thêm nữa</button>
     <button class="nav-dot" data-slide="5">Sắp ra mắt</button>
 </nav>
@@ -1092,7 +1191,7 @@
                 </div>
                 <div class="core-card-body">
                     <h3>Bác sĩ thực đồng hành</h3>
-                    <p>Không phải chatbot. Bác sĩ Long Châu xem chỉ số sau mỗi lần đo, gửi lời khuyên cá nhân. Nhắn cho & gọi tư vấn 24/7.</p>
+                    <p>Bác sĩ Long Châu xem chỉ số sau mỗi lần đo, gửi lời khuyên cá nhân. Nhắn cho &amp; gọi tư vấn 24/7.</p>
                     <span class="core-tag">Tư vấn cá nhân</span>
                 </div>
             </div>
@@ -1112,7 +1211,7 @@
             <!-- Card 3: Theo dõi chỉ số -->
             <div class="core-card">
                 <div class="core-card-img">
-                    <img src="Báo cáo sức khỏe.jpg" alt="Báo cáo & theo dõi chỉ số">
+                    <img src="Màn báo cáo.jpg" alt="Báo cáo tuần">
                 </div>
                 <div class="core-card-body">
                     <h3>Theo dõi sức khoẻ liên tục</h3>
@@ -1136,78 +1235,10 @@
     </div>
 
     <!-- ========================================
-         SLIDE 3: OVERVIEW — Tổng quan tính năng
-         ======================================== -->
-    <div class="slide slide-overview slide-light">
-        <span class="slide-number">03 / 06</span>
-        <div class="section-label">Trải nghiệm ứng dụng</div>
-        <h2 class="section-title">Tổng quan các tính năng</h2>
-        <p class="section-subtitle">Mọi thứ bạn cần để quản lý sức khỏe — trong một ứng dụng duy nhất</p>
-
-        <div class="overview-grid">
-            <!-- 1. Đo huyết áp -->
-            <div class="overview-card">
-                <div class="overview-card-img">
-                    <img src="Đo huyết áp.jpg" alt="Đo huyết áp">
-                </div>
-                <div class="overview-card-body">
-                    <div class="overview-card-icon" style="background:#D1FAE5;">
-                        <span>💓</span>
-                    </div>
-                    <h3>Đo huyết áp</h3>
-                    <p>2 cách đo: bằng máy đo truyền thống hoặc quét khuôn mặt ~40 giây. Nhận kết quả kèm lời khuyên từ bác sĩ chuyên khoa.</p>
-                </div>
-            </div>
-
-            <!-- 2. Đo bằng khuôn mặt -->
-            <div class="overview-card">
-                <div class="overview-card-img">
-                    <img src="Đo bằng quét khuôn mặt.jpg" alt="Đo bằng quét khuôn mặt">
-                </div>
-                <div class="overview-card-body">
-                    <div class="overview-card-icon" style="background:#FEF3C7;">
-                        <span>📸</span>
-                    </div>
-                    <h3>Đo bằng khuôn mặt</h3>
-                    <p>Công nghệ rPPG phân tích tín hiệu mạch máu qua camera trước. Không cần thiết bị ngoài, chỉ cần giữ yên ~40 giây.</p>
-                </div>
-            </div>
-
-            <!-- 3. Báo cáo sức khoẻ -->
-            <div class="overview-card">
-                <div class="overview-card-img">
-                    <img src="Báo cáo sức khỏe.jpg" alt="Báo cáo sức khoẻ">
-                </div>
-                <div class="overview-card-body">
-                    <div class="overview-card-icon" style="background:#DBEAFE;">
-                        <span>📊</span>
-                    </div>
-                    <h3>Báo cáo sức khoẻ</h3>
-                    <p>Nhật ký chỉ số, báo cáo tuần trực quan, theo dõi BMI. Phát hiện bất thường sớm, chia sẻ cho bác sĩ dễ dàng.</p>
-                </div>
-            </div>
-
-            <!-- 4. SOS & Hỗ trợ -->
-            <div class="overview-card">
-                <div class="overview-card-img">
-                    <img src="SOS.jpg" alt="Gọi khẩn cấp SOS">
-                </div>
-                <div class="overview-card-body">
-                    <div class="overview-card-icon" style="background:#FEE2E2;">
-                        <span>🆘</span>
-                    </div>
-                    <h3>SOS & Hỗ trợ 24/7</h3>
-                    <p>Nhắn cho bác sĩ, gọi tư vấn chuyên khoa, gọi khẩn cấp — mọi lúc mọi nơi. Luôn có bác sĩ sẵn sàng đồng hành.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ========================================
-         SLIDE 4: ĐO HUYẾT ÁP CHI TIẾT
+         SLIDE 3: ĐO HUYẾT ÁP CHI TIẾT
          ======================================== -->
     <div class="slide slide-measure slide-light">
-        <span class="slide-number">04 / 06</span>
+        <span class="slide-number">03 / 06</span>
         <div class="section-label">Tính năng nổi bật</div>
         <h2 class="section-title">Đo huyết áp — Dễ dàng, chính xác</h2>
         <p class="section-subtitle">Chọn cách đo phù hợp với bạn — bằng máy đo hoặc chỉ cần camera điện thoại</p>
@@ -1223,8 +1254,8 @@
                     <div class="measure-phone-label">Đo bằng khuôn mặt</div>
                 </div>
                 <div class="measure-phone">
-                    <img src="kết quả phân tích đo khuôn mặt.png" alt="Kết quả phân tích">
-                    <div class="measure-phone-label">Kết quả phân tích</div>
+                    <img src="Màn báo cáo.jpg" alt="Báo cáo tuần">
+                    <div class="measure-phone-label">Báo cáo tuần</div>
                 </div>
             </div>
 
@@ -1253,6 +1284,84 @@
     </div>
 
     <!-- ========================================
+         SLIDE 4: KẾT QUẢ ĐO & HỖ TRỢ (MỚI)
+         ======================================== -->
+    <div class="slide slide-results slide-light">
+        <span class="slide-number">04 / 06</span>
+        <div class="section-label">Sau khi đo</div>
+        <h2 class="section-title">Kết quả &amp; Hỗ trợ y tế</h2>
+        <p class="section-subtitle">Nhận kết quả chi tiết kèm lời khuyên từ bác sĩ — và luôn có hỗ trợ khi cần</p>
+
+        <div class="results-layout">
+            <!-- Kết quả đo + Lời khuyên BS -->
+            <div class="results-section">
+                <div class="results-card">
+                    <div class="results-card-header">
+                        <div class="results-icon" style="background:#D1FAE5;">📋</div>
+                        <h3>Kết quả đo &amp; Lời khuyên Bác sĩ</h3>
+                    </div>
+                    <p>Sau mỗi lần đo, bạn nhận ngay kết quả chi tiết kèm lời khuyên cá nhân từ bác sĩ chuyên khoa.</p>
+                    <ul class="results-bullets">
+                        <li>
+                            <span class="results-bullet-dot" style="background:#D1FAE5;">✅</span>
+                            <span>Kết quả phân tích chi tiết: SYS, DIA, nhịp tim</span>
+                        </li>
+                        <li>
+                            <span class="results-bullet-dot" style="background:#DBEAFE;">📊</span>
+                            <span>Phân loại mức huyết áp theo chuẩn y khoa</span>
+                        </li>
+                        <li>
+                            <span class="results-bullet-dot" style="background:#FEF3C7;">👨‍⚕️</span>
+                            <span>Lời khuyên cá nhân hoá từ bác sĩ chuyên khoa</span>
+                        </li>
+                        <li>
+                            <span class="results-bullet-dot" style="background:#EDE9FE;">📈</span>
+                            <span>Biểu đồ theo dõi xu hướng sức khoẻ</span>
+                        </li>
+                    </ul>
+                    <div class="results-phones">
+                        <img src="kết quả phân tích đo khuôn mặt.png" alt="Kết quả phân tích">
+                        <img src="Báo cáo sức khỏe.jpg" alt="Báo cáo sức khoẻ">
+                    </div>
+                </div>
+            </div>
+
+            <!-- SOS & Tư vấn -->
+            <div class="results-section">
+                <div class="results-card">
+                    <div class="results-card-header">
+                        <div class="results-icon" style="background:#FEE2E2;">🆘</div>
+                        <h3>SOS &amp; Tư vấn 24/7</h3>
+                    </div>
+                    <p>Khi cần hỗ trợ, bác sĩ luôn sẵn sàng. Nhắn tin, gọi tư vấn chuyên khoa, hoặc gọi khẩn cấp — mọi lúc mọi nơi.</p>
+                    <ul class="results-bullets">
+                        <li>
+                            <span class="results-bullet-dot" style="background:#FEE2E2;">🚨</span>
+                            <span>Gọi khẩn cấp SOS chỉ với 1 chạm</span>
+                        </li>
+                        <li>
+                            <span class="results-bullet-dot" style="background:#DBEAFE;">💬</span>
+                            <span>Nhắn tin tư vấn bác sĩ 24/7</span>
+                        </li>
+                        <li>
+                            <span class="results-bullet-dot" style="background:#D1FAE5;">📞</span>
+                            <span>Gọi video tư vấn chuyên khoa</span>
+                        </li>
+                        <li>
+                            <span class="results-bullet-dot" style="background:#FEF3C7;">👨‍👩‍👧‍👦</span>
+                            <span>Thông báo khẩn cấp đến người thân</span>
+                        </li>
+                    </ul>
+                    <div class="results-phones">
+                        <img src="SOS.jpg" alt="SOS khẩn cấp">
+                        <img src="Màn trang chủ.jpg" alt="Tư vấn bác sĩ">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================
          SLIDE 5: THÊM TÍNH NĂNG
          ======================================== -->
     <div class="slide slide-more slide-light">
@@ -1265,7 +1374,7 @@
             <!-- Báo cáo sức khoẻ -->
             <div class="more-card">
                 <div class="more-card-img">
-                    <img src="Báo cáo sức khỏe.jpg" alt="Báo cáo sức khoẻ">
+                    <img src="Màn báo cáo.jpg" alt="Báo cáo tuần">
                 </div>
                 <div class="more-card-body">
                     <h3>📊 Báo cáo sức khoẻ</h3>
@@ -1280,7 +1389,7 @@
                     <img src="SOS.jpg" alt="Gọi khẩn cấp SOS">
                 </div>
                 <div class="more-card-body">
-                    <h3>🆘 Hỗ trợ & Gọi khẩn cấp</h3>
+                    <h3>🆘 Hỗ trợ &amp; Gọi khẩn cấp</h3>
                     <p>Nhắn cho bác sĩ 24/7, gọi tư vấn chuyên khoa, gọi khẩn cấp khi cần. Luôn có bác sĩ sẵn sàng hỗ trợ bạn và gia đình.</p>
                     <span class="more-tag" style="background:#FEE2E2;color:#DC2626;">24/7</span>
                 </div>
@@ -1313,17 +1422,15 @@
     </div>
 
     <!-- ========================================
-         SLIDE 6: COMING SOON — Style xanh trắng
+         SLIDE 6: COMING SOON — Sắp ra mắt
          ======================================== -->
     <div class="slide slide-coming">
         <span class="slide-number" style="color:rgba(255,255,255,0.4);">06 / 06</span>
 
-        <!-- Floating dots -->
         <div class="coming-float-dot dot1"></div>
         <div class="coming-float-dot dot2"></div>
         <div class="coming-float-dot dot3"></div>
 
-        <!-- Header: badge + title + mascot chào -->
         <div class="coming-header">
             <div class="coming-header-text">
                 <div class="coming-badge">Coming Soon</div>
@@ -1339,7 +1446,6 @@
             </div>
         </div>
 
-        <!-- Body: 2 cards side by side -->
         <div class="coming-body">
             <!-- Card 1: Nội dung cá nhân hóa -->
             <div class="coming-card">
@@ -1381,23 +1487,23 @@
                     </div>
                     <h3>❤️‍🩹 Đánh giá nguy cơ tim mạch</h3>
                 </div>
-                <p class="coming-card-desc">Hiểu nguy cơ nhồi máu cơ tim và đột quỵ trong 10 năm tới — chỉ vài câu hỏi đơn giản, theo chuẩn WHO.</p>
+                <p class="coming-card-desc">Nhận thức được mức độ nguy cơ mắc bệnh tim mạch trong vòng 10 năm — công cụ đánh giá theo WHO khuyến nghị.</p>
                 <ul class="coming-bullets">
                     <li>
-                        <span class="coming-bullet-icon blue">❓</span>
-                        <span>Chỉ cần 1 câu hỏi thêm — tích hợp với 4/5 thông tin Bác sĩ LC247 đã có</span>
+                        <span class="coming-bullet-icon blue">🌍</span>
+                        <span>Công cụ đánh giá nguy cơ tim mạch theo WHO khuyến nghị</span>
                     </li>
                     <li>
-                        <span class="coming-bullet-icon green">🌍</span>
-                        <span>Theo chuẩn WHO — công cụ đánh giá sử dụng toàn cầu</span>
+                        <span class="coming-bullet-icon green">📋</span>
+                        <span>Đánh giá dựa trên: Tuổi, giới tính, hút thuốc, HA tâm thu, BMI</span>
                     </li>
                     <li>
-                        <span class="coming-bullet-icon yellow">🟢</span>
-                        <span>4 mức dễ hiểu — Xanh/Vàng/Cam/Đỏ kèm khuyến nghị cụ thể</span>
+                        <span class="coming-bullet-icon yellow">🎯</span>
+                        <span>5 mức độ nguy cơ — từ thấp đến rất cao kèm chỉ dẫn cụ thể</span>
                     </li>
                     <li>
-                        <span class="coming-bullet-icon pink">📉</span>
-                        <span>Nguy cơ có thể thay đổi — kiểm soát HA, ăn uống, bỏ thuốc</span>
+                        <span class="coming-bullet-icon pink">💡</span>
+                        <span>Nhận lời khuyên can thiệp sớm, tips lối sống &amp; dinh dưỡng</span>
                     </li>
                 </ul>
                 <div class="coming-card-phone">
@@ -1411,14 +1517,14 @@
 
 <script>
 (function() {
-    const wrapper = document.getElementById('slidesWrapper');
-    const progressFill = document.getElementById('progressFill');
-    const navDots = document.querySelectorAll('.nav-dot');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const totalSlides = 6;
-    let currentSlide = 0;
-    let isTransitioning = false;
+    var wrapper = document.getElementById('slidesWrapper');
+    var progressFill = document.getElementById('progressFill');
+    var navDots = document.querySelectorAll('.nav-dot');
+    var prevBtn = document.getElementById('prevBtn');
+    var nextBtn = document.getElementById('nextBtn');
+    var totalSlides = 6;
+    var currentSlide = 0;
+    var isTransitioning = false;
 
     function goToSlide(n) {
         if (isTransitioning || n < 0 || n >= totalSlides) return;
@@ -1431,23 +1537,19 @@
             d.classList.toggle('active', i === n);
         });
 
-        // Arrow visibility
         prevBtn.classList.toggle('hidden', n === 0);
         nextBtn.classList.toggle('hidden', n === totalSlides - 1);
 
         setTimeout(function() { isTransitioning = false; }, 700);
     }
 
-    // Nav dots click
     navDots.forEach(function(dot) {
         dot.addEventListener('click', function() { goToSlide(+dot.dataset.slide); });
     });
 
-    // Arrow buttons click
     prevBtn.addEventListener('click', function() { goToSlide(currentSlide - 1); });
     nextBtn.addEventListener('click', function() { goToSlide(currentSlide + 1); });
 
-    // Keyboard navigation
     document.addEventListener('keydown', function(e) {
         if (e.key === 'ArrowRight' || e.key === ' ') {
             e.preventDefault();
@@ -1464,7 +1566,6 @@
         }
     });
 
-    // Touch support
     var touchStartX = 0;
     document.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; });
     document.addEventListener('touchend', function(e) {
@@ -1475,7 +1576,6 @@
         }
     });
 
-    // Mouse wheel
     var wheelTimeout;
     document.addEventListener('wheel', function(e) {
         clearTimeout(wheelTimeout);
@@ -1485,7 +1585,6 @@
         }, 50);
     }, { passive: true });
 
-    // Initialize
     goToSlide(0);
 })();
 </script>
