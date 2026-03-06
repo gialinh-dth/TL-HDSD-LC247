@@ -347,7 +347,7 @@
            ============================================ */
         .slide-core {
             background: linear-gradient(180deg, var(--bg-start) 0%, var(--white) 100%);
-            padding: 40px 70px 50px;
+            padding: 50px 70px 50px;
         }
         .section-label {
             font-size: 14px;
@@ -366,12 +366,12 @@
         .section-subtitle {
             font-size: 17px;
             color: var(--text-secondary);
-            margin-bottom: 24px;
+            margin-bottom: 36px;
         }
         .core-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 18px;
+            gap: 22px;
             flex: 1;
         }
         .core-card {
@@ -409,47 +409,47 @@
             display: flex;
             justify-content: center;
             align-items: flex-end;
-            padding: 16px 16px 0 16px;
+            padding: 24px 24px 0 24px;
             position: relative;
             overflow: hidden;
             flex-shrink: 0;
-            min-height: 180px;
+            min-height: 200px;
         }
         .core-card:nth-child(1) .core-card-img { background: linear-gradient(180deg, #EFF6FF 0%, rgba(239,246,255,0.3) 100%); }
         .core-card:nth-child(2) .core-card-img { background: linear-gradient(180deg, #ECFDF5 0%, rgba(236,253,245,0.3) 100%); }
         .core-card:nth-child(3) .core-card-img { background: linear-gradient(180deg, #FFF7ED 0%, rgba(255,247,237,0.3) 100%); }
         .core-card:nth-child(4) .core-card-img { background: linear-gradient(180deg, #FEF2F2 0%, rgba(254,242,242,0.3) 100%); }
         .core-card-img img {
-            width: 150px;
+            width: 160px;
             height: auto;
             border-radius: 14px 14px 0 0;
             box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
             display: block;
         }
         .core-card-body {
-            padding: 14px 18px 16px 18px;
+            padding: 20px 24px 24px 24px;
             flex: 1;
             display: flex;
             flex-direction: column;
         }
         .core-card h3 {
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 700;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             color: var(--text);
         }
         .core-card p {
-            font-size: 13px;
-            line-height: 1.55;
+            font-size: 14px;
+            line-height: 1.65;
             color: var(--text-secondary);
             flex: 1;
         }
         .core-tag {
             display: inline-block;
-            margin-top: 8px;
-            font-size: 11px;
+            margin-top: 12px;
+            font-size: 12px;
             font-weight: 600;
-            padding: 4px 12px;
+            padding: 5px 14px;
             border-radius: 50px;
             letter-spacing: 0.3px;
             width: fit-content;
@@ -565,11 +565,11 @@
            ============================================ */
         .slide-results {
             background: linear-gradient(180deg, #F0FDF4 0%, var(--white) 50%, #EFF6FF 100%);
-            padding: 40px 70px 50px;
+            padding: 36px 70px 50px;
         }
         .results-layout {
             display: flex;
-            gap: 24px;
+            gap: 28px;
             flex: 1;
             min-height: 0;
         }
@@ -581,7 +581,7 @@
             background: var(--card-bg);
             border: 1px solid rgba(37,99,235,0.08);
             border-radius: 20px;
-            padding: 22px 24px;
+            padding: 20px 24px 16px;
             height: 100%;
             display: flex;
             flex-direction: column;
@@ -595,7 +595,7 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
         .results-icon {
             width: 42px;
@@ -614,48 +614,38 @@
         }
         .results-card > p {
             font-size: 14px;
-            line-height: 1.6;
+            line-height: 1.5;
             color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+        .results-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
             margin-bottom: 10px;
         }
-        .results-bullets {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            margin-bottom: 12px;
-        }
-        .results-bullets li {
-            font-size: 13px;
-            color: var(--text-secondary);
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
-            line-height: 1.45;
-        }
-        .results-bullet-dot {
-            flex: 0 0 20px;
-            height: 20px;
-            border-radius: 50%;
-            display: flex;
+        .results-highlight-tag {
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            margin-top: 1px;
-            font-size: 11px;
+            gap: 5px;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 50px;
+            color: var(--text);
         }
         .results-phones {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             justify-content: center;
             flex: 1;
             align-items: flex-end;
         }
         .results-phones img {
-            width: 160px;
+            width: 200px;
             height: auto;
-            border-radius: 16px;
-            box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+            border-radius: 18px;
+            box-shadow: 0 8px 28px rgba(0,0,0,0.14);
         }
 
         /* ============================================
@@ -977,7 +967,7 @@
             .coming-card-top h3 { font-size: 18px; }
             .coming-card-mascot img { width: 60px; }
             .coming-card-mascot { flex: 0 0 60px; }
-            .results-phones img { width: 140px; }
+            .results-phones img { width: 170px; }
             .results-card h3 { font-size: 18px; }
         }
 
@@ -1066,12 +1056,12 @@
             .results-layout { flex-direction: column; gap: 14px; }
             .results-card { padding: 16px; }
             .results-card h3 { font-size: 17px; }
-            .results-card > p { font-size: 13px; margin-bottom: 10px; }
+            .results-card > p { font-size: 13px; margin-bottom: 8px; }
             .results-icon { width: 38px; height: 38px; font-size: 18px; }
-            .results-bullets { gap: 5px; margin-bottom: 10px; }
-            .results-bullets li { font-size: 12px; }
+            .results-highlights { gap: 4px; margin-bottom: 8px; }
+            .results-highlight-tag { font-size: 10px; padding: 3px 8px; }
             .results-phones { gap: 8px; flex-wrap: wrap; }
-            .results-phones img { width: 100px; }
+            .results-phones img { width: 110px; }
 
             /* More */
             .slide-more { padding: 24px 20px 50px; }
@@ -1117,7 +1107,7 @@
             .core-card h3 { font-size: 12px; }
             .core-card p { font-size: 10px; }
             .measure-phone img { width: 85px; }
-            .results-phones img { width: 85px; }
+            .results-phones img { width: 90px; }
             .coming-title { font-size: 20px; }
             .coming-card-phone img { width: 100px; }
         }
@@ -1324,25 +1314,13 @@
                         <div class="results-icon" style="background:#D1FAE5;">📋</div>
                         <h3>Kết quả đo &amp; Lời khuyên Bác sĩ</h3>
                     </div>
-                    <p>Sau mỗi lần đo, bạn nhận ngay kết quả chi tiết kèm lời khuyên cá nhân từ bác sĩ chuyên khoa.</p>
-                    <ul class="results-bullets">
-                        <li>
-                            <span class="results-bullet-dot" style="background:#D1FAE5;">✅</span>
-                            <span>Kết quả phân tích chi tiết: SYS, DIA, nhịp tim</span>
-                        </li>
-                        <li>
-                            <span class="results-bullet-dot" style="background:#DBEAFE;">📊</span>
-                            <span>Phân loại mức huyết áp theo chuẩn y khoa</span>
-                        </li>
-                        <li>
-                            <span class="results-bullet-dot" style="background:#FEF3C7;">👨‍⚕️</span>
-                            <span>Lời khuyên cá nhân hoá từ bác sĩ chuyên khoa</span>
-                        </li>
-                        <li>
-                            <span class="results-bullet-dot" style="background:#EDE9FE;">📈</span>
-                            <span>Biểu đồ theo dõi xu hướng sức khoẻ</span>
-                        </li>
-                    </ul>
+                    <p>Sau mỗi lần đo, nhận kết quả chi tiết kèm lời khuyên cá nhân từ bác sĩ chuyên khoa.</p>
+                    <div class="results-highlights">
+                        <span class="results-highlight-tag" style="background:#D1FAE5;">✅ SYS / DIA / Nhịp tim</span>
+                        <span class="results-highlight-tag" style="background:#DBEAFE;">📊 Phân loại huyết áp</span>
+                        <span class="results-highlight-tag" style="background:#FEF3C7;">👨‍⚕️ Lời khuyên bác sĩ</span>
+                        <span class="results-highlight-tag" style="background:#EDE9FE;">📈 Biểu đồ xu hướng</span>
+                    </div>
                     <div class="results-phones">
                         <img src="kết quả đo.jpg" alt="Kết quả đo">
                         <img src="lời khuyên bs.jpg" alt="Lời khuyên bác sĩ">
@@ -1358,25 +1336,13 @@
                         <div class="results-icon" style="background:#FEE2E2;">🆘</div>
                         <h3>SOS &amp; Tư vấn 24/7</h3>
                     </div>
-                    <p>Khi cần hỗ trợ, bác sĩ luôn sẵn sàng. Nhắn tin, gọi tư vấn chuyên khoa, hoặc gọi khẩn cấp — mọi lúc mọi nơi.</p>
-                    <ul class="results-bullets">
-                        <li>
-                            <span class="results-bullet-dot" style="background:#FEE2E2;">🚨</span>
-                            <span>Gọi khẩn cấp SOS chỉ với 1 chạm</span>
-                        </li>
-                        <li>
-                            <span class="results-bullet-dot" style="background:#DBEAFE;">💬</span>
-                            <span>Nhắn tin tư vấn bác sĩ 24/7</span>
-                        </li>
-                        <li>
-                            <span class="results-bullet-dot" style="background:#D1FAE5;">📞</span>
-                            <span>Gọi tư vấn chuyên khoa</span>
-                        </li>
-                        <li>
-                            <span class="results-bullet-dot" style="background:#FEF3C7;">👨‍👩‍👧‍👦</span>
-                            <span>Thông báo khẩn cấp đến người thân</span>
-                        </li>
-                    </ul>
+                    <p>Bác sĩ luôn sẵn sàng. Nhắn tin, gọi tư vấn, hoặc gọi khẩn cấp — mọi lúc mọi nơi.</p>
+                    <div class="results-highlights">
+                        <span class="results-highlight-tag" style="background:#FEE2E2;">🚨 SOS 1 chạm</span>
+                        <span class="results-highlight-tag" style="background:#DBEAFE;">💬 Chat 24/7</span>
+                        <span class="results-highlight-tag" style="background:#D1FAE5;">📞 Gọi chuyên khoa</span>
+                        <span class="results-highlight-tag" style="background:#FEF3C7;">👨‍👩‍👧‍👦 Báo người thân</span>
+                    </div>
                     <div class="results-phones">
                         <img src="SOS.jpg" alt="SOS khẩn cấp">
                         <img src="tư vấn SOS.png" alt="Tư vấn SOS">
