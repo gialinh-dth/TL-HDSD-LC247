@@ -80,7 +80,7 @@
             position: fixed;
             bottom: 28px;
             left: 50%;
-            transform: translateX(-50%);
+            transform: translateX(-50%) translateY(0);
             display: flex;
             gap: 6px;
             z-index: 999;
@@ -89,6 +89,12 @@
             padding: 8px 16px;
             border-radius: 50px;
             box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+            transition: transform 0.4s ease, opacity 0.4s ease;
+        }
+        .slide-nav.nav-hidden {
+            transform: translateX(-50%) translateY(100px);
+            opacity: 0;
+            pointer-events: none;
         }
         .nav-dot {
             display: flex;
@@ -160,7 +166,8 @@
         }
         .nav-arrow.prev { left: 24px; }
         .nav-arrow.next { right: 24px; }
-        .nav-arrow.hidden { opacity: 0; pointer-events: none; }
+        .nav-arrow.hidden { opacity: 0 !important; pointer-events: none; }
+        .nav-arrow { transition: all 0.4s ease; }
         .nav-arrow svg {
             width: 22px;
             height: 22px;
@@ -639,13 +646,13 @@
         }
         .results-phones {
             display: flex;
-            gap: 12px;
+            gap: 10px;
             justify-content: center;
             flex: 1;
             align-items: flex-end;
         }
         .results-phones img {
-            width: 150px;
+            width: 130px;
             height: auto;
             border-radius: 16px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.10);
@@ -978,15 +985,27 @@
            RESPONSIVE — MOBILE (<=768px)
            ============================================ */
         @media (max-width: 768px) {
+            /* Allow vertical scroll on mobile */
+            .slide {
+                height: auto;
+                min-height: 100vh;
+                overflow-y: auto;
+                overflow-x: hidden;
+                -webkit-overflow-scrolling: touch;
+            }
+            .slides-wrapper {
+                height: auto;
+            }
+
             /* Nav: dots only */
             .slide-nav {
-                bottom: 12px;
-                padding: 6px 10px;
-                gap: 4px;
+                bottom: 10px;
+                padding: 5px 8px;
+                gap: 3px;
             }
             .nav-dot {
-                height: 28px;
-                padding: 0 8px;
+                height: 26px;
+                padding: 0 6px;
                 font-size: 0;
                 gap: 0;
             }
@@ -994,15 +1013,15 @@
                 width: 10px;
                 height: 10px;
             }
-            .nav-arrow { width: 38px; height: 38px; }
-            .nav-arrow.prev { left: 8px; }
-            .nav-arrow.next { right: 8px; }
-            .nav-arrow svg { width: 18px; height: 18px; }
+            .nav-arrow { width: 36px; height: 36px; }
+            .nav-arrow.prev { left: 6px; }
+            .nav-arrow.next { right: 6px; }
+            .nav-arrow svg { width: 16px; height: 16px; }
 
             /* Hero */
             .hero-content { flex-direction: column; }
-            .hero-left { padding: 30px 24px 10px; flex: none; }
-            .hero-right { flex: 1; }
+            .hero-left { padding: 30px 24px 16px; flex: none; }
+            .hero-right { flex: none; padding: 10px 0 30px; }
             .hero-title { font-size: 28px; margin-bottom: 14px; }
             .hero-subtitle { font-size: 15px; line-height: 1.5; }
             .hero-badge { font-size: 12px; padding: 6px 14px; margin-bottom: 16px; }
@@ -1016,22 +1035,22 @@
             .slide-number { top: 14px; right: 16px; font-size: 11px; }
 
             /* Core */
-            .slide-core { padding: 24px 20px 60px; }
+            .slide-core { padding: 24px 20px 50px; }
             .section-label { font-size: 11px; letter-spacing: 1.5px; margin-bottom: 6px; }
-            .section-title { font-size: 24px; margin-bottom: 4px; }
-            .section-subtitle { font-size: 14px; margin-bottom: 16px; }
-            .core-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-            .core-card-img { min-height: 120px; padding: 12px 12px 0; }
-            .core-card-img img { width: 100px; }
-            .core-card-body { padding: 12px 14px 14px; }
+            .section-title { font-size: 22px; margin-bottom: 4px; }
+            .section-subtitle { font-size: 13px; margin-bottom: 14px; }
+            .core-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            .core-card-img { min-height: 110px; padding: 10px 10px 0; }
+            .core-card-img img { width: 90px; }
+            .core-card-body { padding: 10px 12px 12px; }
             .core-card h3 { font-size: 13px; margin-bottom: 4px; }
-            .core-card p { font-size: 11px; line-height: 1.45; }
+            .core-card p { font-size: 11px; line-height: 1.4; }
             .core-tag { font-size: 10px; padding: 3px 10px; margin-top: 6px; }
 
             /* Measure */
-            .slide-measure { padding: 24px 20px 60px; }
+            .slide-measure { padding: 24px 20px 50px; }
             .measure-layout { flex-direction: column; gap: 20px; max-height: none; }
-            .measure-phones { gap: 8px; justify-content: center; }
+            .measure-phones { gap: 8px; justify-content: center; flex-wrap: wrap; }
             .measure-phone img { width: 100px; }
             .measure-phone-label { font-size: 10px; }
             .measure-info h3 { font-size: 22px; }
@@ -1043,38 +1062,38 @@
             .method-icon { width: 36px; height: 36px; font-size: 18px; }
 
             /* Results */
-            .slide-results { padding: 24px 20px 60px; }
+            .slide-results { padding: 24px 20px 50px; }
             .results-layout { flex-direction: column; gap: 14px; }
-            .results-card { padding: 18px; }
-            .results-card h3 { font-size: 18px; }
+            .results-card { padding: 16px; }
+            .results-card h3 { font-size: 17px; }
             .results-card > p { font-size: 13px; margin-bottom: 10px; }
-            .results-icon { width: 40px; height: 40px; font-size: 20px; }
-            .results-bullets { gap: 6px; margin-bottom: 12px; }
+            .results-icon { width: 38px; height: 38px; font-size: 18px; }
+            .results-bullets { gap: 5px; margin-bottom: 10px; }
             .results-bullets li { font-size: 12px; }
-            .results-phones { gap: 8px; }
-            .results-phones img { width: 110px; }
+            .results-phones { gap: 8px; flex-wrap: wrap; }
+            .results-phones img { width: 100px; }
 
             /* More */
-            .slide-more { padding: 24px 20px 60px; }
-            .more-grid { grid-template-columns: 1fr; gap: 12px; max-height: none; }
-            .more-card-img { flex: 0 0 90px; padding: 12px 0 12px 12px; }
-            .more-card-img img { width: 80px; }
-            .more-card-body { padding: 14px; }
+            .slide-more { padding: 24px 20px 50px; }
+            .more-grid { grid-template-columns: 1fr; gap: 10px; max-height: none; }
+            .more-card-img { flex: 0 0 80px; padding: 10px 0 10px 10px; }
+            .more-card-img img { width: 70px; }
+            .more-card-body { padding: 12px; }
             .more-card-body h3 { font-size: 15px; margin-bottom: 4px; }
             .more-card-body p { font-size: 12px; line-height: 1.5; margin-bottom: 6px; }
 
             /* Coming Soon */
-            .slide-coming { padding: 24px 20px 60px; }
+            .slide-coming { padding: 24px 20px 50px; }
             .coming-body { flex-direction: column; gap: 14px; }
-            .coming-title { font-size: 24px; }
+            .coming-title { font-size: 22px; }
             .coming-subtitle { font-size: 13px; }
             .coming-header { margin-bottom: 12px; }
-            .coming-header-mascot img { width: 70px; }
-            .coming-card { padding: 16px; }
-            .coming-card-top { gap: 10px; margin-bottom: 10px; }
-            .coming-card-top h3 { font-size: 16px; }
-            .coming-card-mascot { flex: 0 0 50px; }
-            .coming-card-mascot img { width: 50px; }
+            .coming-header-mascot img { width: 65px; }
+            .coming-card { padding: 14px; }
+            .coming-card-top { gap: 10px; margin-bottom: 8px; }
+            .coming-card-top h3 { font-size: 15px; }
+            .coming-card-mascot { flex: 0 0 45px; }
+            .coming-card-mascot img { width: 45px; }
             .coming-card-desc { font-size: 12px; margin-bottom: 8px; }
             .coming-bullets li { font-size: 11px; gap: 8px; }
             .coming-bullet-icon { flex: 0 0 22px; height: 22px; font-size: 11px; }
@@ -1086,15 +1105,20 @@
            RESPONSIVE — SMALL MOBILE (<=480px)
            ============================================ */
         @media (max-width: 480px) {
-            .hero-title { font-size: 24px; }
-            .hero-stats { flex-wrap: wrap; }
-            .phone-frame.center img { width: 120px; }
+            .hero-title { font-size: 22px; }
+            .hero-stats { flex-wrap: wrap; gap: 12px; }
+            .hero-stat-number { font-size: 20px; }
+            .phone-frame.center img { width: 110px; }
             .phone-frame.side-left img,
-            .phone-frame.side-right img { width: 90px; }
-            .core-card-img { min-height: 100px; }
-            .core-card-img img { width: 80px; }
+            .phone-frame.side-right img { width: 85px; }
+            .section-title { font-size: 20px; }
+            .core-card-img { min-height: 90px; }
+            .core-card-img img { width: 75px; }
+            .core-card h3 { font-size: 12px; }
+            .core-card p { font-size: 10px; }
             .measure-phone img { width: 85px; }
-            .results-phones img { width: 90px; }
+            .results-phones img { width: 85px; }
+            .coming-title { font-size: 20px; }
             .coming-card-phone img { width: 100px; }
         }
     </style>
@@ -1254,8 +1278,8 @@
                     <div class="measure-phone-label">Đo bằng khuôn mặt</div>
                 </div>
                 <div class="measure-phone">
-                    <img src="Màn báo cáo.jpg" alt="Báo cáo tuần">
-                    <div class="measure-phone-label">Báo cáo tuần</div>
+                    <img src="kết quả phân tích đo khuôn mặt.png" alt="Kết quả phân tích">
+                    <div class="measure-phone-label">Kết quả phân tích</div>
                 </div>
             </div>
 
@@ -1320,8 +1344,9 @@
                         </li>
                     </ul>
                     <div class="results-phones">
-                        <img src="kết quả phân tích đo khuôn mặt.png" alt="Kết quả phân tích">
-                        <img src="Báo cáo sức khỏe.jpg" alt="Báo cáo sức khoẻ">
+                        <img src="kết quả đo.jpg" alt="Kết quả đo">
+                        <img src="lời khuyên bs.jpg" alt="Lời khuyên bác sĩ">
+                        <img src="báo cáo tuần.jpg" alt="Báo cáo tuần">
                     </div>
                 </div>
             </div>
@@ -1345,7 +1370,7 @@
                         </li>
                         <li>
                             <span class="results-bullet-dot" style="background:#D1FAE5;">📞</span>
-                            <span>Gọi video tư vấn chuyên khoa</span>
+                            <span>Gọi tư vấn chuyên khoa</span>
                         </li>
                         <li>
                             <span class="results-bullet-dot" style="background:#FEF3C7;">👨‍👩‍👧‍👦</span>
@@ -1354,7 +1379,7 @@
                     </ul>
                     <div class="results-phones">
                         <img src="SOS.jpg" alt="SOS khẩn cấp">
-                        <img src="Màn trang chủ.jpg" alt="Tư vấn bác sĩ">
+                        <img src="tư vấn SOS.png" alt="Tư vấn SOS">
                     </div>
                 </div>
             </div>
@@ -1522,14 +1547,43 @@
     var navDots = document.querySelectorAll('.nav-dot');
     var prevBtn = document.getElementById('prevBtn');
     var nextBtn = document.getElementById('nextBtn');
+    var slideNav = document.getElementById('slideNav');
     var totalSlides = 6;
     var currentSlide = 0;
     var isTransitioning = false;
+    var navHideTimer = null;
+
+    function isMobile() {
+        return window.innerWidth <= 768;
+    }
+
+    function showNav() {
+        slideNav.classList.remove('nav-hidden');
+        prevBtn.style.opacity = '1';
+        nextBtn.style.opacity = '1';
+        clearTimeout(navHideTimer);
+        navHideTimer = setTimeout(hideNav, 3000);
+    }
+
+    function hideNav() {
+        slideNav.classList.add('nav-hidden');
+        prevBtn.style.opacity = '0';
+        nextBtn.style.opacity = '0';
+    }
 
     function goToSlide(n) {
         if (isTransitioning || n < 0 || n >= totalSlides) return;
         isTransitioning = true;
         currentSlide = n;
+
+        if (isMobile()) {
+            var slides = document.querySelectorAll('.slide');
+            var targetSlide = slides[n];
+            if (targetSlide) {
+                targetSlide.scrollTop = 0;
+            }
+        }
+
         wrapper.style.transform = 'translateX(-' + (n * 100) + 'vw)';
         progressFill.style.width = ((n + 1) / totalSlides * 100) + '%';
 
@@ -1539,6 +1593,8 @@
 
         prevBtn.classList.toggle('hidden', n === 0);
         nextBtn.classList.toggle('hidden', n === totalSlides - 1);
+
+        showNav();
 
         setTimeout(function() { isTransitioning = false; }, 700);
     }
@@ -1566,18 +1622,27 @@
         }
     });
 
+    /* Touch: swipe left/right to change slide (only horizontal swipe) */
     var touchStartX = 0;
-    document.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; });
+    var touchStartY = 0;
+    document.addEventListener('touchstart', function(e) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+    });
     document.addEventListener('touchend', function(e) {
-        var diff = touchStartX - e.changedTouches[0].clientX;
-        if (Math.abs(diff) > 60) {
-            if (diff > 0) goToSlide(currentSlide + 1);
+        var diffX = touchStartX - e.changedTouches[0].clientX;
+        var diffY = touchStartY - e.changedTouches[0].clientY;
+        /* Only trigger slide change if horizontal swipe is dominant */
+        if (Math.abs(diffX) > 60 && Math.abs(diffX) > Math.abs(diffY) * 1.5) {
+            if (diffX > 0) goToSlide(currentSlide + 1);
             else goToSlide(currentSlide - 1);
         }
     });
 
+    /* Mouse wheel: only on desktop */
     var wheelTimeout;
     document.addEventListener('wheel', function(e) {
+        if (isMobile()) return;
         clearTimeout(wheelTimeout);
         wheelTimeout = setTimeout(function() {
             if (e.deltaY > 30) goToSlide(currentSlide + 1);
@@ -1585,7 +1650,9 @@
         }, 50);
     }, { passive: true });
 
+    /* Start auto-hide timer */
     goToSlide(0);
+    navHideTimer = setTimeout(hideNav, 3000);
 })();
 </script>
 
